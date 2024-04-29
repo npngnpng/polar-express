@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "preserveValueImports": false,
+    "target": "ES6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "outDir": "dist"
+  },
+  "include": ["./"],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "esm": true
+  }
+}
