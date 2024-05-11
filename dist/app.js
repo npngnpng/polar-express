@@ -17,11 +17,7 @@ app.get('/error', (req, res) => {
     throw new http_error_1.HttpError('not found', 404);
 });
 app.use('/feeds', feed_router_1.default);
-app.use(errorHandler);
-app.listen(port, () => {
-    console.log(`App running on port ${port}...`);
-});
-function errorHandler(err, req, res, next) {
+app.use((err, req, res, next) => {
     if (err instanceof http_error_1.HttpError) {
         res.status(err.status).json({
             status: err.status,
@@ -35,4 +31,8 @@ function errorHandler(err, req, res, next) {
             message: 'internal server error'
         });
     }
-}
+    next();
+});
+app.listen(port, () => {
+    console.log(`App running on port ${port}...`);
+});
